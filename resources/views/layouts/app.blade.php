@@ -1,8 +1,3 @@
-<?php
-if (config('app.env') === 'production') {
-    URL::forceScheme('https');
-}
-?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
