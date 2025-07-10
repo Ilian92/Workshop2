@@ -60,7 +60,7 @@
 </section>
 
 <!-- Section Nouveautés -->
-<section class="bg-pink-50 py-16">
+<section class="py-16" style="background-color: #FFF8F0;">
     <div class="container mx-auto px-6">
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">NOUVEAUTÉS</h2>
         
@@ -88,15 +88,12 @@
 </section>
 
 <!-- Section Meilleures ventes -->
-<section class="bg-white py-16">
+<section class="py-16" style="background-color: #FFF8F0;">
     <div class="container mx-auto px-6">
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Meilleures ventes</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            @php
-                $meilleuresVentes = \App\Models\Produit::with(['typeAnimal', 'pilier'])->skip(4)->take(4)->get();
-            @endphp
-            
+            <!-- Affichage des 4 produits les plus vendus -->
             @foreach($meilleuresVentes as $produit)
             <div class="bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow">
                 <div class="w-full h-48 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
@@ -109,6 +106,9 @@
                     <span>★★★★★</span>
                 </div>
                 <p class="text-xl font-bold text-gray-800">{{ number_format($produit->prix / 100, 2) }}€</p>
+                @if($produit->total_vendu > 0)
+                    <p class="text-sm text-gray-500 mt-1">{{ $produit->total_vendu }} vendus</p>
+                @endif
             </div>
             @endforeach
         </div>
@@ -122,7 +122,7 @@
 </section>
 
 <!-- Section Découvrez nos piliers -->
-<section class="bg-white py-16">
+<section class="py-16" style="background-color: #FFF8F0;">
     <div class="container mx-auto px-6">
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Découvrez nos piliers</h2>
         
@@ -156,7 +156,7 @@
 </section>
 
 <!-- Section OUR HAPPY CUSTOMERS -->
-<section class="bg-white py-16">
+<section class="py-16" style="background-color: #FFF8F0;">
     <div class="container mx-auto px-6">
         <div class="flex justify-between items-center mb-12">
             <h2 class="text-3xl font-bold text-gray-800">NOS CLIENTS SATISFAITS</h2>
