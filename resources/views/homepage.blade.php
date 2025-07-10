@@ -65,12 +65,8 @@
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">NOUVEAUTÉS</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- On affiche quelques produits de la base de données -->
-            @php
-                $produits = \App\Models\Produit::with(['typeAnimal', 'pilier'])->take(4)->get();
-            @endphp
-            
-            @foreach($produits as $produit)
+            <!-- Affichage des 4 produits les plus récents -->
+            @foreach($nouveautes as $produit)
             <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div class="w-full h-48 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
                     <img src="{{ $produit->image ? asset('storage/' . $produit->image) : 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=300&h=300&fit=crop' }}" 
@@ -85,7 +81,7 @@
         
         <div class="text-center mt-8">
             <a href="{{ route('products.index') }}" class="inline-block bg-green-500 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-600 transition-colors">
-                Voir toutes les nouveautés
+                Voir tous les produits
             </a>
         </div>
     </div>
