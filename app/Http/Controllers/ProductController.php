@@ -3,15 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produit;
+use App\Models\Pilier;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $products = Produit::paginate(10);
-        return view('products.index', compact('products'));
+        $query = Produit::with(['pilier', 'typeAnimal']);
+        
+        // Filtre par pilier si spécifié
+        if ($request->has('pilier') && $request->pilier != '') {
+            $query->where('pilier_id', $request->pilier);
+        }
+        
+        $products = $query->paginate(10);
+        $piliers = Pilier::all();
+        
+        return view('products.index', compact('products', 'piliers'));
     }
 
 
