@@ -11,6 +11,8 @@ class TypeAnimal extends Model
 {
     use HasFactory;
 
+    protected $table = 'typeanimal';
+
     protected $fillable = [
         'nom',
         'description',
