@@ -25,7 +25,7 @@
                                     <div class="flex items-center space-x-3">
                                         @if($item['product']->image)
                                             <img src="{{ $item['product']->image }}" 
-                                                 alt="{{ $item['product']->name }}" 
+                                                 alt="{{ $item['product']->nom }}" 
                                                  class="w-12 h-12 object-cover rounded">
                                         @else
                                             <div class="w-12 h-12 bg-gray-200 rounded flex items-center justify-center">
@@ -34,14 +34,14 @@
                                         @endif
                                         
                                         <div>
-                                            <h4 class="font-medium text-gray-900">{{ $item['product']->name }}</h4>
+                                            <h4 class="font-medium text-gray-900">{{ $item['product']->nom }}</h4>
                                             <p class="text-sm text-gray-500">Quantité: {{ $item['quantity'] }}</p>
                                         </div>
                                     </div>
                                     
                                     <div class="text-right">
                                         <p class="font-semibold text-green-600">{{ number_format($item['subtotal'], 2) }} €</p>
-                                        <p class="text-sm text-gray-500">{{ number_format($item['product']->price, 2) }} € l'unité</p>
+                                        <p class="text-sm text-gray-500">{{ number_format($item['product']->prix, 2) }} € l'unité</p>
                                     </div>
                                 </div>
                             @endforeach

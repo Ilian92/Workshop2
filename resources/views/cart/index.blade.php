@@ -36,9 +36,9 @@
                                     @endif
 
                                     <div class="flex-1">
-                                        <h3 class="text-lg font-semibold text-gray-900">{{ $item['product']->name }}</h3>
-                                        <p class="text-gray-600 text-sm">{{ $item['product']->description }}</p>
-                                        <p class="text-sm text-gray-500">Stock: {{ $item['product']->stock }}</p>
+                                        <h3 class="text-lg font-semibold text-gray-900">{{ $item['product']->nom }}</h3>
+                                        <p class="text-gray-600 text-sm">{{ $item['product']->descriptionCourte }}</p>
+                                        <p class="text-sm text-gray-500">Stock: {{ $item['product']->quantite }}</p>
                                     </div>
 
                                     <div class="flex items-center space-x-4">
@@ -66,7 +66,7 @@
                                                 {{ number_format($item['subtotal'], 2) }} €
                                             </p>
                                             <p class="text-sm text-gray-500">
-                                                {{ number_format($item['product']->price, 2) }} € l'unité
+                                                {{ number_format($item['product']->prix, 2) }} € l'unité
                                             </p>
                                         </div>
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Produit;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -14,21 +14,21 @@ class CartController extends Controller
         $total = 0;
 
         foreach ($cart as $productId => $quantity) {
-            $product = Product::find($productId);
+            $product = Produit::find($productId);
             if ($product) {
                 $products[] = [
                     'product' => $product,
                     'quantity' => $quantity,
-                    'subtotal' => $product->price * $quantity
+                    'subtotal' => $product->prix * $quantity
                 ];
-                $total += $product->price * $quantity;
+                $total += $product->prix * $quantity;
             }
         }
 
         return view('cart.index', compact('products', 'total'));
     }
 
-    public function add(Request $request, Product $product)
+    public function add(Request $request, Produit $product)
     {
         $cart = session()->get('cart', []);
         $quantity = $request->input('quantity', 1);
@@ -44,7 +44,7 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Produit ajouté au panier !');
     }
 
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Produit $product)
     {
         $cart = session()->get('cart', []);
         $quantity = $request->input('quantity', 1);
@@ -60,7 +60,7 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Panier mis à jour !');
     }
 
-    public function remove(Product $product)
+    public function remove(Produit $product)
     {
         $cart = session()->get('cart', []);
         unset($cart[$product->id]);

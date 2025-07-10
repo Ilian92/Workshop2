@@ -35,12 +35,12 @@
                             
                             <div>
                                 <p class="text-sm text-gray-500">Date de commande</p>
-                                <p class="font-semibold text-gray-900">{{ $order->created_at->format('d/m/Y H:i') }}</p>
+                                <p class="font-semibold text-gray-900">{{ $order->date_commande }} </p>
                             </div>
                             
                             <div>
                                 <p class="text-sm text-gray-500">Montant total</p>
-                                <p class="font-semibold text-green-600 text-lg">{{ number_format($order->total_amount, 2) }} €</p>
+                                <p class="font-semibold text-green-600 text-lg">{{ number_format($order->total, 2) }} €</p>
                             </div>
                             
                             <div>
@@ -55,12 +55,12 @@
                     <div class="space-y-4">
                         <div class="text-left">
                             <h3 class="text-lg font-semibold text-gray-900 mb-2">Adresse de livraison</h3>
-                            <p class="text-gray-600">{{ $order->shipping_address }}</p>
+                            <p class="text-gray-600">{{ $order->adresse_livraison }}</p>
                         </div>
                         
                         <div class="text-left">
                             <h3 class="text-lg font-semibold text-gray-900 mb-2">Adresse de facturation</h3>
-                            <p class="text-gray-600">{{ $order->billing_address }}</p>
+                            <p class="text-gray-600">{{ $order->adresse_facturation }}</p>
                         </div>
                     </div>
                     

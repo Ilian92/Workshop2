@@ -23,7 +23,7 @@
                 @foreach($products as $product)
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         @if($product->image)
-                            <img src="{{ $product->image }}" alt="{{ $product->name }}" class="w-full h-48 object-cover">
+                            <img src="{{ $product->image }}" alt="{{ $product->nom }}" class="w-full h-48 object-cover">
                         @else
                             <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
                                 <span class="text-gray-500">Aucune image</span>
@@ -31,12 +31,12 @@
                         @endif
                         
                         <div class="p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ $product->name }}</h3>
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-3">{{ $product->description }}</p>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ $product->nom }}</h3>
+                            <p class="text-gray-600 text-sm mb-4 line-clamp-3">{{ $product->descriptionCourte }}</p>
                             
                             <div class="flex items-center justify-between mb-4">
-                                <span class="text-2xl font-bold text-green-600">{{ number_format($product->price, 2) }} €</span>
-                                <span class="text-sm text-gray-500">Stock: {{ $product->stock }}</span>
+                                <span class="text-2xl font-bold text-green-600">{{ number_format($product->prix, 2) }} €</span>
+                                <span class="text-sm text-gray-500">Stock: {{ $product->quantite }}</span>
                             </div>
 
                             <div class="flex space-x-2">
@@ -45,7 +45,7 @@
                                     Voir détails
                                 </a>
                                 
-                                @if($product->stock > 0)
+                                @if($product->quantite > 0)
                                     <form action="{{ route('cart.add', $product) }}" method="POST" class="flex-1">
                                         @csrf
                                         <button type="submit" 

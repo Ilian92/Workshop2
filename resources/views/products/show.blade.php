@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $product->name }}
+            {{ $product->nom }}
         </h2>
     </x-slot>
 
@@ -35,24 +35,24 @@
 
                         <!-- Informations du produit -->
                         <div>
-                            <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ $product->name }}</h1>
+                            <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ $product->nom }}</h1>
                             
                             <div class="mb-6">
-                                <span class="text-4xl font-bold text-green-600">{{ number_format($product->price, 2) }} €</span>
+                                <span class="text-4xl font-bold text-green-600">{{ number_format($product->prix, 2) }} €</span>
                             </div>
 
                             <div class="mb-6">
                                 <h3 class="text-lg font-semibold text-gray-900 mb-2">Description</h3>
-                                <p class="text-gray-600 leading-relaxed">{{ $product->description }}</p>
+                                <p class="text-gray-600 leading-relaxed">{{ $product->descriptionLongue }}</p>
                             </div>
 
                             <div class="mb-6">
                                 <span class="text-sm text-gray-500">
-                                    Stock disponible: <span class="font-semibold">{{ $product->stock }}</span> unités
+                                    Stock disponible: <span class="font-semibold">{{ $product->quantite }}</span> unités
                                 </span>
                             </div>
 
-                            @if($product->stock > 0)
+                            @if($product->quantite > 0)
                                 <form action="{{ route('cart.add', $product) }}" method="POST" class="space-y-4">
                                     @csrf
                                     <div>
@@ -64,7 +64,7 @@
                                                name="quantity" 
                                                value="1" 
                                                min="1" 
-                                               max="{{ $product->stock }}"
+                                               max="{{ $product->quantite }}"
                                                class="w-20 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                     </div>
                                     

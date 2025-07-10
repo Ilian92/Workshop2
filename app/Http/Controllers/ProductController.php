@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Produit;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,7 +12,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::where('is_active', true)->paginate(12);
+        $products = Produit::paginate(12);
         return view('products.index', compact('products'));
     }
 
@@ -35,7 +35,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(Produit $product)
     {
         return view('products.show', compact('product'));
     }

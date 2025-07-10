@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Models\OrderItem;
-use App\Models\Product;
+use App\Models\Commande;
+use App\Models\ProduitCommande;
+use App\Models\Produit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Stripe\Stripe;
@@ -29,19 +29,22 @@ class CheckoutController extends Controller
         $total = 0;
 
         foreach ($cart as $productId => $quantity) {
-            $product = Product::find($productId);
+            $product = Produit::find($productId);
             if ($product) {
                 $products[] = [
                     'product' => $product,
                     'quantity' => $quantity,
-                    'subtotal' => $product->price * $quantity
+                    'subtotal' => $product->prix * $quantity
                 ];
-                $total += $product->price * $quantity;
+                $total += $product->prix * $quantity;
             }
         }
 
         if (empty($products)) {
             return redirect()->route('cart.index')->with('error', 'Votre panier est vide !');
+        }
+        if ($total < 0.5) {
+            return redirect()->route('cart.index')->with('error', 'Le montant minimum pour un paiement est de 0,50 €');
         }
 
         // Créer l'intention de paiement Stripe
@@ -77,14 +80,14 @@ class CheckoutController extends Controller
         $total = 0;
 
         foreach ($cart as $productId => $quantity) {
-            $product = Product::find($productId);
-            if ($product && $product->stock >= $quantity) {
+            $product = Produit::find($productId);
+            if ($product && $product->quantite >= $quantity) {
                 $products[] = [
                     'product' => $product,
                     'quantity' => $quantity,
-                    'subtotal' => $product->price * $quantity
+                    'subtotal' => $product->prix * $quantity
                 ];
-                $total += $product->price * $quantity;
+                $total += $product->prix * $quantity;
             }
         }
 
@@ -96,26 +99,27 @@ class CheckoutController extends Controller
             DB::beginTransaction();
 
             // Créer la commande
-            $order = Order::create([
+            $order = Commande::create([
                 'user_id' => auth()->id(),
                 'order_number' => 'ORD-' . time(),
-                'total_amount' => $total,
+                'total' => $total,
                 'status' => 'pending',
-                'shipping_address' => $request->shipping_address,
-                'billing_address' => $request->billing_address,
+                'date_commande' => now()->toDateString(),
+                'adresse_livraison' => $request->shipping_address,
+                'adresse_facturation' => $request->billing_address,
             ]);
 
             // Créer les éléments de commande
             foreach ($products as $item) {
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'product_id' => $item['product']->id,
-                    'quantity' => $item['quantity'],
-                    'price' => $item['product']->price,
+                ProduitCommande::create([
+                    'commande_id' => $order->id,
+                    'produit_id' => $item['product']->id,
+                    'quantite' => $item['quantity'],
+                    'prixUnitaire' => $item['product']->prix,
                 ]);
 
                 // Mettre à jour le stock
-                $item['product']->decrement('stock', $item['quantity']);
+                $item['product']->decrement('quantite', $item['quantity']);
             }
 
             // Mettre à jour le statut de la commande
@@ -137,7 +141,7 @@ class CheckoutController extends Controller
         }
     }
 
-    public function success(Order $order)
+    public function success(Commande $order)
     {
         return view('checkout.success', compact('order'));
     }
