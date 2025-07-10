@@ -35,7 +35,7 @@
                             <p class="text-gray-600 text-sm mb-4 line-clamp-3">{{ $product->descriptionCourte }}</p>
                             
                             <div class="flex items-center justify-between mb-4">
-                                <span class="text-2xl font-bold text-green-600">{{ number_format($product->prix, 2) }} €</span>
+                                <span class="text-2xl font-bold text-green-600">{{ number_format($product->prix/100, 2) }} €</span>
                                 <span class="text-sm text-gray-500">Stock: {{ $product->quantite }}</span>
                             </div>
 
