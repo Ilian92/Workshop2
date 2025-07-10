@@ -19,14 +19,14 @@
     <!-- Additional Head Content -->
     @stack('head')
 </head>
-<body class="font-sans antialiased bg-gray-50">
+<body class="font-sans antialiased bg-gray-50 min-h-screen flex flex-col">
     <!-- Navigation (optionnelle) -->
     @unless($hideNavigation)
         @include('layouts.partials.navigation')
     @endunless
 
     <!-- Page Content -->
-    <main class="@unless($hideNavigation) pt-0 @endunless">
+    <main class="@unless($hideNavigation) pt-0 @endunless flex-1">
         {{ $slot }}
     </main>
 
