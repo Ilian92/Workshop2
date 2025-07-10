@@ -98,9 +98,7 @@
                                 <div class="border-t border-gray-200 pt-4">
                                     <h4 class="text-md font-semibold text-gray-900 mb-4">Informations de paiement</h4>
                                     
-                                    <div id="card-element" class="w-full px-3 py-2 border border-gray-300 rounded-md">
-                                        <!-- Stripe Elements sera injecté ici -->
-                                    </div>
+                                    <div id="card-element" class="w-full px-3 py-2 border border-gray-300 rounded-md"></div>
                                     
                                     <div id="card-errors" class="text-red-500 text-sm mt-2" role="alert"></div>
                                 </div>
@@ -126,11 +124,11 @@
 
     <script src="https://js.stripe.com/v3/"></script>
     <script>
-        // Configuration Stripe
+        // Stripe
         const stripe = Stripe('{{ config("services.stripe.key") }}');
         const elements = stripe.elements();
         
-        // Créer l'élément de carte
+        // Élément de carte
         const cardElement = elements.create('card', {
             style: {
                 base: {
@@ -146,10 +144,10 @@
             },
         });
         
-        // Monter l'élément de carte
+        // Monter la carte
         cardElement.mount('#card-element');
         
-        // Gérer les erreurs de validation
+        // Erreurs Stripe
         cardElement.addEventListener('change', function(event) {
             const displayError = document.getElementById('card-errors');
             if (event.error) {
@@ -159,7 +157,7 @@
             }
         });
         
-        // Gérer la soumission du formulaire
+        // Soumission du paiement
         const form = document.getElementById('payment-form');
         form.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -182,7 +180,7 @@
                     submitButton.disabled = false;
                     submitButton.textContent = 'Payer {{ number_format($total, 2) }} €';
                 } else {
-                    // Le paiement a réussi, soumettre le formulaire
+                    // Paiement réussi
                     form.submit();
                 }
             });

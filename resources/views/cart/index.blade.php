@@ -45,9 +45,7 @@
                                         <form action="{{ route('cart.update', $item['product']) }}" method="POST" class="flex items-center space-x-2">
                                             @csrf
                                             @method('PUT')
-                                            <label for="quantity-{{ $item['product']->id }}" class="text-sm font-medium text-gray-700">
-                                                Quantité:
-                                            </label>
+                                            <label for="quantity-{{ $item['product']->id }}" class="text-sm font-medium text-gray-700">Quantité:</label>
                                             <input type="number" 
                                                    id="quantity-{{ $item['product']->id }}"
                                                    name="quantity" 
@@ -55,10 +53,7 @@
                                                    min="1" 
                                                    max="{{ $item['product']->stock }}"
                                                    class="w-16 px-2 py-1 border border-gray-300 rounded text-sm">
-                                            <button type="submit" 
-                                                    class="text-blue-600 hover:text-blue-800 text-sm">
-                                                Mettre à jour
-                                            </button>
+                                            <button type="submit" class="text-blue-600 hover:text-blue-800 text-sm">Mettre à jour</button>
                                         </form>
 
                                         <div class="text-right">
@@ -73,10 +68,7 @@
                                         <form action="{{ route('cart.remove', $item['product']) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" 
-                                                    class="text-red-600 hover:text-red-800 text-sm">
-                                                Supprimer
-                                            </button>
+                                            <button type="submit" class="text-red-600 hover:text-red-800 text-sm">Supprimer</button>
                                         </form>
                                     </div>
                                 </div>
@@ -88,30 +80,18 @@
                                         <form action="{{ route('cart.clear') }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" 
-                                                    class="text-red-600 hover:text-red-800 text-sm">
-                                                Vider le panier
-                                            </button>
+                                            <button type="submit" class="text-red-600 hover:text-red-800 text-sm">Vider le panier</button>
                                         </form>
                                     </div>
                                     <div class="text-right">
-                                        <p class="text-2xl font-bold text-green-600">
-                                            Total: {{ number_format($total, 2) }} €
-                                        </p>
+                                        <p class="text-2xl font-bold text-green-600">Total: {{ number_format($total, 2) }} €</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="flex justify-between items-center pt-6">
-                                <a href="{{ route('products.index') }}" 
-                                   class="text-blue-600 hover:text-blue-800 font-medium">
-                                    ← Continuer les achats
-                                </a>
-                                
-                                <a href="{{ route('checkout.index') }}" 
-                                   class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200">
-                                    Procéder au paiement
-                                </a>
+                                <a href="{{ route('products.index') }}" class="text-blue-600 hover:text-blue-800 font-medium">← Continuer les achats</a>
+                                <a href="{{ route('checkout.index') }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200">Procéder au paiement</a>
                             </div>
                         </div>
                     </div>
