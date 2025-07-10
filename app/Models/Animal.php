@@ -33,4 +33,12 @@ class Animal extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the type of the animal.
+     */
+    public function typeAnimal(): BelongsTo
+    {
+        return $this->belongsTo(TypeAnimal::class);
+    }
 }

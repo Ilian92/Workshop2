@@ -47,7 +47,6 @@ services:
                 - "-p${DB_PASSWORD}"
             retries: 3
             timeout: 5s
-# serveur: mysql / username: sail / password: password
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         links:
