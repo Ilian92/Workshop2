@@ -17,10 +17,18 @@ class TypeAnimal extends Model
     ];
 
     /**
-     * Get the animal for the typeanimal.
+     * Get the animals for the typeanimal.
      */
-    public function user(): HasMany
+    public function animals(): HasMany
     {
         return $this->hasMany(Animal::class);
+    }
+
+    /**
+     * Get the produits for the typeanimal.
+     */
+    public function produits(): HasMany
+    {
+        return $this->hasMany(Produit::class);
     }
 }

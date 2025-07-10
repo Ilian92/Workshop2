@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('commandes', function (Blueprint $table) {
+        Schema::create('animals', function (Blueprint $table) {
             $table->id();
-            $table->string('status')->default('pending');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->date('date_commande');
-            $table->integer('total')->default(0);
-            $table->string('adresse_livraison');
-            $table->string('adresse_facturation')->nullable();
+            $table->foreignId('type_animal_id')->constrained('typeanimal')->onDelete('cascade');
+            $table->string('nom');
+            $table->string('race');
+            $table->integer('age');
+            $table->date('dateNaissance');
+            $table->string('caractere');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('commandes');
+        Schema::dropIfExists('animals');
     }
 };

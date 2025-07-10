@@ -22,4 +22,12 @@ class Commande extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the produit commandes for the commande.
+     */
+    public function produitCommandes()
+    {
+        return $this->hasMany(ProduitCommande::class);
+    }
 }
