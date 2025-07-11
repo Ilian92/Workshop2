@@ -23,7 +23,7 @@
     <!-- Additional Head Content -->
     @stack('head')
 </head>
-<body class="font-sans antialiased bg-gray-50 min-h-screen flex flex-col">
+<body class="font-sans antialiased bg-beige min-h-screen flex flex-col">
     <!-- Navigation (optionnelle) -->
     @unless($hideNavigation)
         @include('layouts.partials.navigation')

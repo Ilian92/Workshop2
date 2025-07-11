@@ -1,37 +1,33 @@
-<nav x-data="{ open: false, profileOpen: false }" class="bg-white border-b border-gray-100 shadow-sm">
+<nav x-data="{ open: false, profileOpen: false }" class="bg-beige">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <!-- Logo APWAP -->
+        <div class="flex justify-between items-center nav-content">
             <div class="flex items-center">
                 <a href="{{ route('homepage') }}" class="flex items-center">
                     <span class="logo-apwap">APWAP</span>
                 </a>
             </div>
 
-            <!-- Navigation principale (desktop) -->
             <div class="hidden md:flex items-center space-x-8">
                 <a href="{{ route('homepage') }}" 
-                   class="text-gray-700 hover:text-green-600 font-medium transition-colors {{ request()->routeIs('homepage') ? 'text-green-600' : '' }}">
-                    Nouveautés
+                   class="nav-link {{ request()->routeIs('homepage') ? 'color-jaune' : '' }}">
+                    New Arrivals
                 </a>
                 <a href="{{ route('products.index') }}" 
-                   class="text-gray-700 hover:text-green-600 font-medium transition-colors {{ request()->routeIs('products.*') ? 'text-green-600' : '' }}">
-                    Catalogue
+                   class="nav-link {{ request()->routeIs('products.*') ? 'color-jaune' : '' }}">
+                    Catalog 
                 </a>
                 <a href="#" 
-                   class="text-gray-700 hover:text-green-600 font-medium transition-colors">
-                    À propos
+                   class="nav-link">
+                    About Us
                 </a>
                 <a href="#" 
-                   class="text-gray-700 hover:text-green-600 font-medium transition-colors">
+                   class="nav-link">
                     Contact
                 </a>
             </div>
 
-            <!-- Icônes droite (desktop) -->
             <div class="hidden md:flex items-center space-x-4">
-                <!-- Icône panier -->
-                <a href="{{ route('cart.index') }}" class="relative p-2 text-gray-700 hover:text-green-600 transition-colors">
+                <a href="{{ route('cart.index') }}" class="relative p-2 color-noir hover:color-vert transition-colors">
                     <img src="{{ asset('images/icons/icon-cart.svg') }}" alt="Panier" class="w-6 h-6">
                     @if(session('cart') && count(session('cart')) > 0)
                         <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
@@ -40,13 +36,11 @@
                     @endif
                 </a>
 
-                <!-- Menu profil -->
                 <div class="relative" x-data="{ profileOpen: false }">
-                    <button @click="profileOpen = !profileOpen" class="p-2 text-gray-700 hover:text-green-600 transition-colors focus:outline-none">
+                    <button @click="profileOpen = !profileOpen" class="p-2 color-noir hover:color-vert transition-colors focus:outline-none">
                         <img src="{{ asset('images/icons/icon-profil.svg') }}" alt="Profil" class="w-6 h-6">
                     </button>
 
-                    <!-- Dropdown profil -->
                     <div x-show="profileOpen" 
                          @click.away="profileOpen = false" 
                          x-transition:enter="transition ease-out duration-200"
@@ -55,33 +49,34 @@
                          x-transition:leave="transition ease-in duration-75"
                          x-transition:leave-start="opacity-100 transform scale-100"
                          x-transition:leave-end="opacity-0 transform scale-95"
-                         class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
+                         class="dropdown-profil absolute right-0 w-48 bg-beige rounded-md p-3 z-50 border border-vert">
                         @auth
-                            <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                Profil
+                            <a href="{{ route('profile.edit') }}" class="link-dropdown {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                                Profile
+                            </a>
+                            <a href="{{ route('dashboard') }}" class="link-dropdown {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                                Dashboard
                             </a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                    Se déconnecter
+                                <button type="submit" class="link-dropdown w-full text-left">
+                                    Sign Out
                                 </button>
                             </form>
                         @else
-                            <a href="{{ route('login') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                Connexion
+                            <a href="{{ route('login') }}" class="link-dropdown {{ request()->routeIs('login') ? 'active' : '' }}">
+                                Login
                             </a>
-                            <a href="{{ route('register') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                Inscription
+                            <a href="{{ route('register') }}" class="link-dropdown {{ request()->routeIs('register') ? 'active' : '' }}">
+                                Sign Up
                             </a>
                         @endauth
                     </div>
                 </div>
             </div>
 
-            <!-- Menu hamburger (mobile) -->
             <div class="md:hidden flex items-center space-x-4">
-                <!-- Icône panier mobile -->
-                <a href="{{ route('cart.index') }}" class="relative p-2 text-gray-700 hover:text-green-600 transition-colors">
+                <a href="{{ route('cart.index') }}" class="relative p-2 color-noir hover:color-vert transition-colors">
                     <img src="{{ asset('images/icons/icon-cart.svg') }}" alt="Panier" class="w-6 h-6">
                     @if(session('cart') && count(session('cart')) > 0)
                         <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
@@ -90,8 +85,7 @@
                     @endif
                 </a>
 
-                <!-- Bouton menu mobile -->
-                <button @click="open = !open" class="p-2 text-gray-700 hover:text-green-600 focus:outline-none">
+                <button @click="open = !open" class="p-2 color-noir hover:color-vert focus:outline-none">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': !open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -101,28 +95,26 @@
         </div>
     </div>
 
-    <!-- Menu mobile -->
     <div :class="{'block': open, 'hidden': !open}" class="hidden md:hidden bg-white border-t border-gray-200">
         <div class="px-2 pt-2 pb-3 space-y-1">
             <a href="{{ route('homepage') }}" 
-               class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md {{ request()->routeIs('homepage') ? 'text-green-600 bg-green-50' : '' }}">
-                Nouveautés
+               class="nav-link block {{ request()->routeIs('homepage') ? 'active' : '' }}">
+                New Arrivals
             </a>
             <a href="{{ route('products.index') }}" 
-               class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md {{ request()->routeIs('products.*') ? 'text-green-600 bg-green-50' : '' }}">
-                Catalogue
+               class="nav-link block {{ request()->routeIs('products.*') ? 'active' : '' }}">
+                Catalog
             </a>
             <a href="#" 
-               class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md">
-                À propos
+               class="nav-link block px-3 py-2 text-base font-medium hover:bg-gray-50 rounded-md">
+                About Us
             </a>
             <a href="#" 
-               class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md">
+               class="nav-link block px-3 py-2 text-base font-medium hover:bg-gray-50 rounded-md">
                 Contact
             </a>
         </div>
 
-        <!-- Section profil mobile -->
         <div class="pt-4 pb-3 border-t border-gray-200">
             @auth
                 <div class="px-4">
@@ -131,26 +123,30 @@
                 </div>
                 <div class="mt-3 space-y-1">
                     <a href="{{ route('profile.edit') }}" 
-                       class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md">
-                        Profil
+                       class="link-dropdown block {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                        Profile
+                    </a>
+                    <a href="{{ route('dashboard') }}" 
+                       class="link-dropdown block {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                        Dashboard
                     </a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" 
-                                class="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md">
-                            Se déconnecter
+                                class="link-dropdown block w-full text-left px-3 py-2 text-base font-medium hover:bg-gray-50 rounded-md">
+                            Sign Out
                         </button>
                     </form>
                 </div>
             @else
                 <div class="mt-3 space-y-1">
                     <a href="{{ route('login') }}" 
-                       class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md">
-                        Connexion
+                       class="link-dropdown block {{ request()->routeIs('login') ? 'active' : '' }}">
+                        Login
                     </a>
                     <a href="{{ route('register') }}" 
-                       class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md">
-                        Inscription
+                       class="link-dropdown block {{ request()->routeIs('register') ? 'active' : '' }}">
+                        Sign Up
                     </a>
                 </div>
             @endauth

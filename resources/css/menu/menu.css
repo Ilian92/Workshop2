@@ -1,0 +1,40 @@
+.nav-container {
+    height: 134px;
+}
+
+.nav-content {
+    height: 134px;
+}
+
+.nav-link {
+    color: var(--noir);
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--jaune);
+}
+
+.dropdown-profil {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dropdown-profil .link-dropdown {
+    padding: 10px 20px;
+    color: var(--noir);
+    border-radius: 4px;
+    width: 100%;
+    display: flex;
+}
+
+.dropdown-profil .link-dropdown.active,
+.dropdown-profil .link-dropdown:hover {
+    background-color: var(--vert);
+}
