@@ -20,8 +20,8 @@
                    class="nav-link">
                     About Us
                 </a>
-                <a href="#" 
-                   class="nav-link">
+                <a href="{{ route('contact') }}" 
+                   class="nav-link {{ request()->routeIs('contact') ? 'color-jaune' : '' }}">
                     Contact
                 </a>
             </div>
@@ -109,8 +109,8 @@
                class="nav-link block px-3 py-2 text-base font-medium hover:bg-gray-50 rounded-md">
                 About Us
             </a>
-            <a href="#" 
-               class="nav-link block px-3 py-2 text-base font-medium hover:bg-gray-50 rounded-md">
+            <a href="{{ route('contact') }}" 
+               class="nav-link block px-3 py-2 text-base font-medium hover:bg-gray-50 rounded-md {{ request()->routeIs('contact') ? 'active' : '' }}">
                 Contact
             </a>
         </div>
