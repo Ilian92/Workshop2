@@ -91,6 +91,7 @@ p {
 	color: var(--jaune); 
 }
 
+
 .bg-vert { 
 	background-color: var(--vert); 
 }
@@ -105,4 +106,17 @@ p {
 }
 .bg-jaune { 
 	background-color: var(--jaune); 
+}
+
+
+.border-vert { 
+	border: 1px solid var(--vert); 
+}
+
+.link-dropdown {
+	background-color: var(--beige);
+}
+
+.link-dropdown.active {
+	background-color: var(--vert);
 }

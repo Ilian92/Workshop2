@@ -10,15 +10,15 @@
             <div class="hidden md:flex items-center space-x-8">
                 <a href="{{ route('homepage') }}" 
                    class="nav-link {{ request()->routeIs('homepage') ? 'color-jaune' : '' }}">
-                    Nouveautés
+                    New Arrivals
                 </a>
                 <a href="{{ route('products.index') }}" 
                    class="nav-link {{ request()->routeIs('products.*') ? 'color-jaune' : '' }}">
-                    Catalogue
+                    Catalog 
                 </a>
                 <a href="#" 
                    class="nav-link">
-                    À propos
+                    About Us
                 </a>
                 <a href="#" 
                    class="nav-link">
@@ -49,23 +49,26 @@
                          x-transition:leave="transition ease-in duration-75"
                          x-transition:leave-start="opacity-100 transform scale-100"
                          x-transition:leave-end="opacity-0 transform scale-95"
-                         class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
+                         class="dropdown-profil absolute right-0 w-48 bg-beige rounded-md p-3 z-50 border border-vert">
                         @auth
-                            <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                Profil
+                            <a href="{{ route('profile.edit') }}" class="link-dropdown {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                                Profile
+                            </a>
+                            <a href="{{ route('dashboard') }}" class="link-dropdown {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                                Dashboard
                             </a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                    Se déconnecter
+                                <button type="submit" class="link-dropdown w-full text-left">
+                                    Sign Out
                                 </button>
                             </form>
                         @else
-                            <a href="{{ route('login') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                Connexion
+                            <a href="{{ route('login') }}" class="link-dropdown {{ request()->routeIs('login') ? 'active' : '' }}">
+                                Login
                             </a>
-                            <a href="{{ route('register') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                Inscription
+                            <a href="{{ route('register') }}" class="link-dropdown {{ request()->routeIs('register') ? 'active' : '' }}">
+                                Sign Up
                             </a>
                         @endauth
                     </div>
@@ -95,19 +98,19 @@
     <div :class="{'block': open, 'hidden': !open}" class="hidden md:hidden bg-white border-t border-gray-200">
         <div class="px-2 pt-2 pb-3 space-y-1">
             <a href="{{ route('homepage') }}" 
-               class="block px-3 py-2 text-base font-medium color-noir hover:color-vert hover:bg-gray-50 rounded-md {{ request()->routeIs('homepage') ? 'text-green-600 bg-green-50' : '' }}">
-                Nouveautés
+               class="nav-link block {{ request()->routeIs('homepage') ? 'active' : '' }}">
+                New Arrivals
             </a>
             <a href="{{ route('products.index') }}" 
-               class="block px-3 py-2 text-base font-medium color-noir hover:color-vert hover:bg-gray-50 rounded-md {{ request()->routeIs('products.*') ? 'text-green-600 bg-green-50' : '' }}">
-                Catalogue
+               class="nav-link block {{ request()->routeIs('products.*') ? 'active' : '' }}">
+                Catalog
             </a>
             <a href="#" 
-               class="block px-3 py-2 text-base font-medium color-noir hover:color-vert hover:bg-gray-50 rounded-md">
-                À propos
+               class="nav-link block px-3 py-2 text-base font-medium hover:bg-gray-50 rounded-md">
+                About Us
             </a>
             <a href="#" 
-               class="block px-3 py-2 text-base font-medium color-noir hover:color-vert hover:bg-gray-50 rounded-md">
+               class="nav-link block px-3 py-2 text-base font-medium hover:bg-gray-50 rounded-md">
                 Contact
             </a>
         </div>
@@ -120,26 +123,30 @@
                 </div>
                 <div class="mt-3 space-y-1">
                     <a href="{{ route('profile.edit') }}" 
-                       class="block px-3 py-2 text-base font-medium color-noir hover:color-vert hover:bg-gray-50 rounded-md">
-                        Profil
+                       class="link-dropdown block {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                        Profile
+                    </a>
+                    <a href="{{ route('dashboard') }}" 
+                       class="link-dropdown block {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                        Dashboard
                     </a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" 
-                                class="block w-full text-left px-3 py-2 text-base font-medium color-noir hover:color-vert hover:bg-gray-50 rounded-md">
-                            Se déconnecter
+                                class="link-dropdown block w-full text-left px-3 py-2 text-base font-medium hover:bg-gray-50 rounded-md">
+                            Sign Out
                         </button>
                     </form>
                 </div>
             @else
                 <div class="mt-3 space-y-1">
                     <a href="{{ route('login') }}" 
-                       class="block px-3 py-2 text-base font-medium color-noir hover:color-vert hover:bg-gray-50 rounded-md">
-                        Connexion
+                       class="link-dropdown block {{ request()->routeIs('login') ? 'active' : '' }}">
+                        Login
                     </a>
                     <a href="{{ route('register') }}" 
-                       class="block px-3 py-2 text-base font-medium color-noir hover:color-vert hover:bg-gray-50 rounded-md">
-                        Inscription
+                       class="link-dropdown block {{ request()->routeIs('register') ? 'active' : '' }}">
+                        Sign Up
                     </a>
                 </div>
             @endauth
