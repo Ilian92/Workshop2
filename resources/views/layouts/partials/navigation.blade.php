@@ -52,11 +52,16 @@
                          class="dropdown-profil absolute right-0 w-48 bg-beige rounded-md p-3 z-50 border border-vert">
                         @auth
                             <a href="{{ route('profile.edit') }}" class="link-dropdown {{ request()->routeIs('profile.*') ? 'active' : '' }}">
-                                Profile
+                                Profil
                             </a>
                             <a href="{{ route('dashboard') }}" class="link-dropdown {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                                 Dashboard
                             </a>
+                            @if(auth()->user()->isAdmin())
+                                <a href="{{ route('admin.dashboard') }}" class="link-dropdown {{ request()->routeIs('admin.*') ? 'active' : '' }}">
+                                    Admin
+                                </a>
+                            @endif
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="link-dropdown w-full text-left">
@@ -130,6 +135,12 @@
                        class="link-dropdown block {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                         Dashboard
                     </a>
+                    @if(auth()->user()->isAdmin())
+                        <a href="{{ route('admin.dashboard') }}" 
+                           class="link-dropdown block {{ request()->routeIs('admin.*') ? 'active' : '' }}">
+                            Admin
+                        </a>
+                    @endif
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" 

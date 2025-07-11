@@ -7,6 +7,12 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AnimalController;
+use App\Http\Controllers\Admin\TypeAnimalController;
+use App\Http\Controllers\Admin\ProduitController;
+use App\Http\Controllers\Admin\PilierController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
@@ -48,6 +54,27 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// Routes d'administration
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    // Dashboard
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Gestion des utilisateurs
+    Route::resource('users', UserController::class);
+
+    // Gestion des animaux
+    Route::resource('animals', AnimalController::class);
+
+    // Gestion des types d'animaux
+    Route::resource('type-animals', TypeAnimalController::class);
+
+    // Gestion des produits
+    Route::resource('produits', ProduitController::class);
+
+    // Gestion des piliers
+    Route::resource('piliers', PilierController::class);
 });
 
 require __DIR__ . '/auth.php';
