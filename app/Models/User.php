@@ -27,6 +27,7 @@ class User extends Authenticatable
         'phone',
         'birth_date',
         'address',
+        'role_id',
     ];
 
     /**
@@ -61,5 +62,35 @@ class User extends Authenticatable
         return $this->hasMany(Animal::class);
     }
 
-    
+    /**
+     * Get the role of the user.
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * Check if user has a specific role.
+     */
+    public function hasRole($role)
+    {
+        return $this->role->nom === $role;
+    }
+
+    /**
+     * Check if user is admin.
+     */
+    public function isAdmin()
+    {
+        return $this->hasRole('admin');
+    }
+
+    /**
+     * Check if user is regular user.
+     */
+    public function isUser()
+    {
+        return $this->hasRole('user');
+    }
 }
