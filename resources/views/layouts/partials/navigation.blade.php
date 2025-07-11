@@ -5,7 +5,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="flex items-center">
-                        <span class="text-2xl font-bold text-green-600">APWAP</span>
+                        <span class="logo-apwap">APWAP</span>
                     </a>
                 </div>
 

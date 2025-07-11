@@ -1,0 +1,108 @@
+/* Import des polices Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Outfit:wght@100..900&display=swap');
+
+:root {
+  --vert: #A8D5BA;
+  --beige: #FFF8F0;
+  --noir: #333333;
+  --gris: #E0E0E0;
+  --jaune: #F5B971;
+}
+
+.logo-apwap {
+  color: var(--noir, #333);
+  font-family: "Archivo Black";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.menu-link {
+  color: var(--noir, #333);
+  font-family: Outfit;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.h1-big {
+  color: var(--noir, #333);
+  font-family: "Archivo Black";
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 64px;
+  letter-spacing: -1.92px;
+}
+
+h1 {
+  color: var(--noir, #333);
+  font-family: "Archivo Black";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -1.2px;
+}
+
+h2 {
+  color: var(--noir, #333);
+  text-align: center;
+  font-family: "Archivo Black";
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+h3 {
+  color: var(--noir, #333);
+  font-family: Outfit;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+p {
+  color: var(--noir, #333);
+  font-family: Outfit;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.color-vert { 
+	color: var(--vert); 
+}
+.color-beige { 
+	color: var(--beige); 
+}
+.color-noir { 
+	color: var(--noir); 
+}
+.color-gris { 
+	color: var(--gris); 
+}
+.color-jaune { 
+	color: var(--jaune); 
+}
+
+.bg-vert { 
+	background-color: var(--vert); 
+}
+.bg-beige { 
+	background-color: var(--beige); 
+}
+.bg-noir { 
+	background-color: var(--noir); 
+}
+.bg-gris { 
+	background-color: var(--gris); 
+}
+.bg-jaune { 
+	background-color: var(--jaune); 
+}
