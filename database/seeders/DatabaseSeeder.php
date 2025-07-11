@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
 
         // Seeder dans le bon ordre (respecter les dépendances)
         $this->call([
+            RoleSeeder::class,
             TypeAnimalSeeder::class,
             PilierSeeder::class,
         ]);
