@@ -1,5 +1,5 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+<x-layout>
+    <form method="POST" action="{{ route('register') }}" class="container">
         @csrf
 
         <!-- Username -->
@@ -75,4 +75,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-layout>
