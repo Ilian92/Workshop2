@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produit;
+use App\Models\Pilier;
+use App\Models\User;
+use App\Models\Animal;
 use Illuminate\Support\Facades\DB;
 
 class HomepageController extends Controller
@@ -28,6 +31,16 @@ class HomepageController extends Controller
             ->take(4)
             ->get();
 
-        return view('homepage', compact('nouveautes', 'meilleuresVentes'));
+        // Récupérer tous les piliers
+        $piliers = Pilier::all();
+
+        // Statistiques réelles
+        $stats = [
+            'produits' => Produit::count(),
+            'clients' => User::count(),
+            'animaux' => Animal::count()
+        ];
+
+        return view('homepage', compact('nouveautes', 'meilleuresVentes', 'piliers', 'stats'));
     }
 }
