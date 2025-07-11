@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
     Route::get('/checkout/success/{order}', [CheckoutController::class, 'success'])->name('checkout.success');
 });
+
+// Routes pour les images
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::post('/products/{produit}/images', [ImageController::class, 'uploadProductImage'])->name('products.images.upload');
+    Route::delete('/products/{produit}/images', [ImageController::class, 'deleteProductImage'])->name('products.images.delete');
+});
+
+Route::get('/products/{produit}/images', [ImageController::class, 'getProductImages'])->name('products.images.get');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
