@@ -42,6 +42,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::get('/products/{produit}/images', [ImageController::class, 'getProductImages'])->name('products.images.get');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
