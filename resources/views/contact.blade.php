@@ -8,25 +8,33 @@
             <p class="text-gray-700 mb-8 text-lg text-center">
                 Une question, une suggestion ? Remplissez le formulaire ci-dessous, nous vous répondrons rapidement !
             </p>
-            <form class="space-y-6">
-                <div>
-                    <label for="nom" class="block text-gray-700 font-semibold mb-2">Nom</label>
-                    <input type="text" id="nom" name="nom" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+            <div x-data="{ show: false, nom: '', email: '', message: '' }">
+                <form class="space-y-6" @submit.prevent="show = true; nom=''; email=''; message=''; $nextTick(() => setTimeout(() => show = false, 2500))">
+                    <div>
+                        <label for="nom" class="block text-gray-700 font-semibold mb-2">Nom</label>
+                        <input type="text" id="nom" name="nom" x-model="nom" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                        <input type="email" id="email" name="email" x-model="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 font-semibold mb-2">Message</label>
+                        <textarea id="message" name="message" rows="5" x-model="message" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-gray-800 text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-700 transition-colors">
+                            Envoyer
+                        </button>
+                    </div>
+                </form>
+                <div x-show="show" x-transition class="fixed inset-0 flex items-center justify-center z-50">
+                    <div class="bg-white rounded-lg shadow-lg px-8 py-6 border-2 border-green-400 flex flex-col items-center">
+                        <svg class="w-12 h-12 text-green-500 mb-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                        <span class="text-lg font-semibold text-green-700">Votre message a bien été envoyé !</span>
+                    </div>
                 </div>
-                <div>
-                    <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
-                    <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
-                </div>
-                <div>
-                    <label for="message" class="block text-gray-700 font-semibold mb-2">Message</label>
-                    <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required></textarea>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="bg-gray-800 text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-700 transition-colors">
-                        Envoyer
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </section>
