@@ -7,6 +7,25 @@
                 </h2>
             </div>
             
+            <!-- Filtres par catégorie -->
+            <div class="mb-6 bg-white p-4 rounded-lg shadow-sm border">
+                <h3 class="text-lg font-medium text-gray-900 mb-3">Filtrer par catégorie</h3>
+                <div class="flex flex-wrap gap-2">
+                    <a href="{{ route('products.index') }}" 
+                       class="px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200
+                              {{ request('pilier') == '' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }}">
+                        Toutes les catégories
+                    </a>
+                    @foreach($piliers as $pilier)
+                        <a href="{{ route('products.index', ['pilier' => $pilier->id]) }}" 
+                           class="px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200
+                                  {{ request('pilier') == $pilier->id ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }}">
+                            {{ $pilier->nom }}
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+            
             @if(session('success'))
                 <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
                     {{ session('success') }}
@@ -33,6 +52,15 @@
                         <div class="p-6">
                             <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ $product->nom }}</h3>
                             <p class="text-gray-600 text-sm mb-4 line-clamp-3">{{ $product->descriptionCourte }}</p>
+                            
+                            <!-- Affichage de la catégorie -->
+                            @if($product->pilier)
+                                <div class="mb-3">
+                                    <span class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
+                                        {{ $product->pilier->nom }}
+                                    </span>
+                                </div>
+                            @endif
                             
                             <div class="flex items-center justify-between mb-4">
                                 <span class="text-2xl font-bold text-green-600">{{ number_format($product->prix/100, 2) }} €</span>
@@ -66,7 +94,7 @@
             </div>
 
             <div class="mt-8">
-                {{ $products->links() }}
+                {{ $products->appends(request()->query())->links() }}
             </div>
         </div>
     </div>
