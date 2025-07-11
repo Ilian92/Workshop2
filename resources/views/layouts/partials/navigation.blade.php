@@ -1,4 +1,4 @@
-<nav x-data="{ open: false, profileOpen: false }" class="bg-white border-b border-gray-100 shadow-sm">
+<nav x-data="{ open: false, profileOpen: false }" class="bg-beige">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center nav-content">
             <div class="flex items-center">
