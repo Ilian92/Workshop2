@@ -3,7 +3,7 @@
     <div class="container mx-auto px-6 py-20 flex items-center justify-between">
         <!-- Contenu texte -->
         <div class="w-1/2 z-10">
-            <h1 class="text-5xl font-bold text-gray-800 mb-6 leading-tight">
+            <h1 class="text-5xl font-bold text-gray-800 mb-6 leading-tight font-['Archivo_Black']">
                 Trouvez ce qu'il y<br>
                 a de mieux pour<br>
                 votre animal.
@@ -19,15 +19,15 @@
             <!-- Statistiques -->
             <div class="flex space-x-12 mt-12">
                 <div>
-                    <div class="text-3xl font-bold text-gray-800">+100</div>
+                    <div class="text-3xl font-bold text-gray-800">{{ $stats['produits'] }}</div>
                     <div class="text-sm text-gray-600">Produits disponibles</div>
                 </div>
                 <div>
-                    <div class="text-3xl font-bold text-gray-800">+2,000</div>
+                    <div class="text-3xl font-bold text-gray-800">{{ $stats['clients'] }}</div>
                     <div class="text-sm text-gray-600">Clients satisfaits</div>
                 </div>
                 <div>
-                    <div class="text-3xl font-bold text-gray-800">1,000</div>
+                    <div class="text-3xl font-bold text-gray-800">{{ $stats['animaux'] }}</div>
                     <div class="text-sm text-gray-600">Animaux heureux</div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             @foreach($nouveautes as $produit)
-            <a href="{{ route('products.show', $produit->id) }}" class="block bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+            <a href="{{ route('products.show', $produit->id) }}" class="block rounded-lg p-6 hover:shadow-md transition-shadow">
                 <div class="w-full h-48 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
                     <img src="{{ $produit->image ? asset('storage/' . $produit->image) : 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=300&h=300&fit=crop' }}" 
                          alt="{{ $produit->nom }}" 
@@ -93,7 +93,7 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             @foreach($meilleuresVentes as $produit)
-            <a href="{{ route('products.show', $produit->id) }}" class="block bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow">
+            <a href="{{ route('products.show', $produit->id) }}" class="block rounded-lg p-6 hover:shadow-md transition-shadow">
                 <div class="w-full h-48 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
                     <img src="{{ $produit->image ? asset('storage/' . $produit->image) : 'https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?w=300&h=300&fit=crop' }}" 
                          alt="{{ $produit->nom }}" 
