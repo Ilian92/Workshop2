@@ -4,7 +4,7 @@
             <!-- Logo APWAP -->
             <div class="flex items-center">
                 <a href="{{ route('homepage') }}" class="flex items-center">
-                    <span class="text-2xl font-bold text-green-600">APWAP</span>
+                    <span class="logo-apwap">APWAP</span>
                 </a>
             </div>
 
