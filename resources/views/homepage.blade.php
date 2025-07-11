@@ -68,7 +68,7 @@
             @foreach($nouveautes as $produit)
             <a href="{{ route('products.show', $produit->id) }}" class="block rounded-lg p-6 hover:shadow-md transition-shadow">
                 <div class="w-full h-48 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                    <img src="{{ $produit->image ? asset('storage/' . $produit->image) : 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=300&h=300&fit=crop' }}" 
+                    <img src="{{ $produit->image_url }}" 
                          alt="{{ $produit->nom }}" 
                          class="w-full h-full object-cover rounded-lg">
                 </div>
@@ -95,7 +95,7 @@
             @foreach($meilleuresVentes as $produit)
             <a href="{{ route('products.show', $produit->id) }}" class="block rounded-lg p-6 hover:shadow-md transition-shadow">
                 <div class="w-full h-48 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                    <img src="{{ $produit->image ? asset('storage/' . $produit->image) : 'https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?w=300&h=300&fit=crop' }}" 
+                    <img src="{{ $produit->image_url }}" 
                          alt="{{ $produit->nom }}" 
                          class="w-full h-full object-cover rounded-lg">
                 </div>
