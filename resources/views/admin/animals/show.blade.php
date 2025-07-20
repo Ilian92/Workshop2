@@ -38,13 +38,23 @@
                 </div>
                 
                 <div>
+                    <h4 class="text-sm font-medium text-gray-700 mb-2">Race</h4>
+                    <p class="text-gray-900">{{ $animal->race }}</p>
+                </div>
+                
+                <div>
                     <h4 class="text-sm font-medium text-gray-700 mb-2">Âge</h4>
                     <p class="text-gray-900">{{ $animal->age }} ans</p>
                 </div>
                 
                 <div>
-                    <h4 class="text-sm font-medium text-gray-700 mb-2">Poids</h4>
-                    <p class="text-gray-900">{{ $animal->poids }} kg</p>
+                    <h4 class="text-sm font-medium text-gray-700 mb-2">Date de naissance</h4>
+                    <p class="text-gray-900">{{ $animal->dateNaissance ? $animal->dateNaissance->format('d/m/Y') : '' }}</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-medium text-gray-700 mb-2">Caractère</h4>
+                    <p class="text-gray-900">{{ $animal->caractere }}</p>
                 </div>
                 
                 <div>
