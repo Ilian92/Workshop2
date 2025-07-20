@@ -24,8 +24,6 @@ class PilierController extends Controller
         $request->validate([
             'nom' => 'required|string|max:255',
             'descriptionCourte' => 'required|string|max:500',
-            'description' => 'nullable|string',
-            'is_active' => 'required|boolean',
         ]);
 
         Pilier::create($request->all());
@@ -48,8 +46,6 @@ class PilierController extends Controller
         $request->validate([
             'nom' => 'required|string|max:255',
             'descriptionCourte' => 'required|string|max:500',
-            'description' => 'nullable|string',
-            'is_active' => 'required|boolean',
         ]);
 
         $pilier->update($request->all());

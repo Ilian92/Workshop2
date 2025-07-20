@@ -28,28 +28,6 @@
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
-                
-                <div>
-                    <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description complète</label>
-                    <textarea name="description" id="description" rows="6" 
-                              class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">{{ old('description', $pilier->description) }}</textarea>
-                    @error('description')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-                
-                <div>
-                    <label for="is_active" class="block text-sm font-medium text-gray-700 mb-2">Statut</label>
-                    <select name="is_active" id="is_active" 
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
-                            required>
-                        <option value="1" {{ old('is_active', $pilier->is_active) == 1 ? 'selected' : '' }}>Actif</option>
-                        <option value="0" {{ old('is_active', $pilier->is_active) == 0 ? 'selected' : '' }}>Inactif</option>
-                    </select>
-                    @error('is_active')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
             </div>
             
             <div class="mt-6 flex justify-end space-x-4">

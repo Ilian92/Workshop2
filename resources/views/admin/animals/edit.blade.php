@@ -52,6 +52,16 @@
                 </div>
                 
                 <div>
+                    <label for="race" class="block text-sm font-medium text-gray-700 mb-2">Race</label>
+                    <input type="text" name="race" id="race" value="{{ old('race', $animal->race) }}" 
+                           class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
+                           required>
+                    @error('race')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                
+                <div>
                     <label for="age" class="block text-sm font-medium text-gray-700 mb-2">Âge (en années)</label>
                     <input type="number" name="age" id="age" value="{{ old('age', $animal->age) }}" min="0" max="50" 
                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
@@ -62,20 +72,21 @@
                 </div>
                 
                 <div>
-                    <label for="poids" class="block text-sm font-medium text-gray-700 mb-2">Poids (en kg)</label>
-                    <input type="number" name="poids" id="poids" value="{{ old('poids', $animal->poids) }}" min="0" step="0.1" 
+                    <label for="dateNaissance" class="block text-sm font-medium text-gray-700 mb-2">Date de naissance</label>
+                    <input type="date" name="dateNaissance" id="dateNaissance" value="{{ old('dateNaissance', $animal->dateNaissance ? $animal->dateNaissance->format('Y-m-d') : '') }}" 
                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
                            required>
-                    @error('poids')
+                    @error('dateNaissance')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
                 
                 <div class="md:col-span-2">
-                    <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                    <textarea name="description" id="description" rows="3" 
-                              class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">{{ old('description', $animal->description) }}</textarea>
-                    @error('description')
+                    <label for="caractere" class="block text-sm font-medium text-gray-700 mb-2">Caractère</label>
+                    <input type="text" name="caractere" id="caractere" value="{{ old('caractere', $animal->caractere) }}" 
+                           class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
+                           required>
+                    @error('caractere')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>

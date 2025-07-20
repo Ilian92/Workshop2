@@ -30,49 +30,87 @@
                 </div>
                 
                 <div>
-                    <label for="stock" class="block text-sm font-medium text-gray-700 mb-2">Stock</label>
-                    <input type="number" name="stock" id="stock" value="{{ old('stock', $produit->stock) }}" min="0" 
+                    <label for="quantite" class="block text-sm font-medium text-gray-700 mb-2">Quantité en stock</label>
+                    <input type="number" name="quantite" id="quantite" value="{{ old('quantite', $produit->quantite) }}" min="0" 
                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
                            required>
-                    @error('stock')
+                    @error('quantite')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
                 
                 <div>
-                    <label for="is_active" class="block text-sm font-medium text-gray-700 mb-2">Statut</label>
-                    <select name="is_active" id="is_active" 
+                    <label for="type_animal_id" class="block text-sm font-medium text-gray-700 mb-2">Type d'animal</label>
+                    <select name="type_animal_id" id="type_animal_id" 
                             class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
                             required>
-                        <option value="1" {{ old('is_active', $produit->is_active) == 1 ? 'selected' : '' }}>Actif</option>
-                        <option value="0" {{ old('is_active', $produit->is_active) == 0 ? 'selected' : '' }}>Inactif</option>
+                        @foreach($typeAnimals as $type)
+                            <option value="{{ $type->id }}" {{ old('type_animal_id', $produit->type_animal_id) == $type->id ? 'selected' : '' }}>{{ $type->nom }}</option>
+                        @endforeach
                     </select>
-                    @error('is_active')
+                    @error('type_animal_id')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
                 
-                <div class="md:col-span-2">
-                    <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                    <textarea name="description" id="description" rows="4" 
-                              class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">{{ old('description', $produit->description) }}</textarea>
-                    @error('description')
+                <div>
+                    <label for="pilier_id" class="block text-sm font-medium text-gray-700 mb-2">Pilier</label>
+                    <select name="pilier_id" id="pilier_id" 
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
+                            required>
+                        @foreach($piliers as $pilier)
+                            <option value="{{ $pilier->id }}" {{ old('pilier_id', $produit->pilier_id) == $pilier->id ? 'selected' : '' }}>{{ $pilier->nom }}</option>
+                        @endforeach
+                    </select>
+                    @error('pilier_id')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
                 
-                <div class="md:col-span-2">
+                <div>
                     <label for="image" class="block text-sm font-medium text-gray-700 mb-2">Image principale</label>
+                    <input type="file" name="image" id="image" accept="image/*"
+                           class="w-full border border-gray-300 rounded-lg px-3 py-2">
                     @if($produit->image)
-                        <div class="mb-4">
-                            <img src="{{ $produit->image_url }}" alt="{{ $produit->nom }}" class="w-32 h-32 object-cover rounded-lg">
-                            <p class="text-sm text-gray-500 mt-2">Image actuelle</p>
+                        <img src="{{ $produit->image_url }}" alt="{{ $produit->nom }}" class="h-16 mt-2">
+                    @endif
+                    @error('image')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                
+                <div>
+                    <label for="images" class="block text-sm font-medium text-gray-700 mb-2">Images supplémentaires</label>
+                    <input type="file" name="images[]" id="images" accept="image/*" multiple
+                           class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                    @if($produit->images)
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            @foreach($produit->images as $img)
+                                <img src="{{ asset('storage/products/' . $img) }}" alt="Image supplémentaire" class="h-12">
+                            @endforeach
                         </div>
                     @endif
-                    <input type="file" name="image" id="image" accept="image/*"
-                           class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-                    <p class="mt-1 text-sm text-gray-500">Formats acceptés : JPG, PNG, WebP (max 2MB). Laissez vide pour conserver l'image actuelle.</p>
-                    @error('image')
+                    @error('images')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                
+                <div class="md:col-span-2">
+                    <label for="descriptionCourte" class="block text-sm font-medium text-gray-700 mb-2">Description courte</label>
+                    <input type="text" name="descriptionCourte" id="descriptionCourte" value="{{ old('descriptionCourte', $produit->descriptionCourte) }}" 
+                           class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
+                           required>
+                    @error('descriptionCourte')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                
+                <div class="md:col-span-2">
+                    <label for="descriptionLongue" class="block text-sm font-medium text-gray-700 mb-2">Description longue</label>
+                    <textarea name="descriptionLongue" id="descriptionLongue" rows="4" 
+                              class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
+                              required>{{ old('descriptionLongue', $produit->descriptionLongue) }}</textarea>
+                    @error('descriptionLongue')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>

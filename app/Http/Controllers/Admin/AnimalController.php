@@ -27,11 +27,12 @@ class AnimalController extends Controller
     {
         $request->validate([
             'nom' => 'required|string|max:255',
-            'type_animal_id' => 'required|exists:type_animals,id',
+            'type_animal_id' => 'required|exists:typeanimal,id',
             'user_id' => 'nullable|exists:users,id',
+            'race' => 'required|string|max:255',
             'age' => 'required|integer|min:0|max:50',
-            'poids' => 'required|numeric|min:0',
-            'description' => 'nullable|string',
+            'dateNaissance' => 'required|date',
+            'caractere' => 'required|string|max:255',
         ]);
 
         Animal::create($request->all());
@@ -56,11 +57,12 @@ class AnimalController extends Controller
     {
         $request->validate([
             'nom' => 'required|string|max:255',
-            'type_animal_id' => 'required|exists:type_animals,id',
+            'type_animal_id' => 'required|exists:typeanimal,id',
             'user_id' => 'nullable|exists:users,id',
+            'race' => 'required|string|max:255',
             'age' => 'required|integer|min:0|max:50',
-            'poids' => 'required|numeric|min:0',
-            'description' => 'nullable|string',
+            'dateNaissance' => 'required|date',
+            'caractere' => 'required|string|max:255',
         ]);
 
         $animal->update($request->all());

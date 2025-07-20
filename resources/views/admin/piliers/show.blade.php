@@ -22,13 +22,6 @@
                 </div>
                 
                 <div>
-                    <h4 class="text-sm font-medium text-gray-700 mb-2">Statut</h4>
-                    <span class="px-2 py-1 text-xs rounded-full {{ $pilier->is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                        {{ $pilier->is_active ? 'Actif' : 'Inactif' }}
-                    </span>
-                </div>
-                
-                <div>
                     <h4 class="text-sm font-medium text-gray-700 mb-2">Date de création</h4>
                     <p class="text-gray-900">{{ $pilier->created_at->format('d/m/Y H:i') }}</p>
                 </div>
@@ -43,13 +36,6 @@
                 <h4 class="text-sm font-medium text-gray-700 mb-2">Description courte</h4>
                 <p class="text-gray-900">{{ $pilier->descriptionCourte }}</p>
             </div>
-            
-            @if($pilier->description)
-                <div class="mt-6">
-                    <h4 class="text-sm font-medium text-gray-700 mb-2">Description complète</h4>
-                    <div class="text-gray-900 whitespace-pre-wrap">{{ $pilier->description }}</div>
-                </div>
-            @endif
         </div>
     </div>
 </x-admin-layout>
