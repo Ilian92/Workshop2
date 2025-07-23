@@ -52,6 +52,16 @@ class Produit extends Model
     }
 
     /**
+     * Get the commandes for the produit through produit_commande pivot table.
+     */
+    public function commandes()
+    {
+        return $this->belongsToMany(Commande::class, 'produit_commande', 'produit_id', 'commande_id')
+                    ->withPivot('quantite', 'prixUnitaire')
+                    ->withTimestamps();
+    }
+
+    /**
      * Get the main image URL.
      */
     public function getImageUrlAttribute()
