@@ -1,5 +1,4 @@
 <x-admin-layout title="Dashboard" subtitle="Vue d'ensemble de l'administration">
-    <!-- Stats Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         <div class="bg-white rounded-lg shadow-sm p-6">
             <div class="flex items-center">
@@ -87,9 +86,7 @@
         </div>
     </div>
 
-    <!-- Recent Items -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Recent Users -->
         <div class="bg-white rounded-lg shadow-sm">
             <div class="p-6 border-b border-gray-200">
                 <h3 class="text-lg font-semibold text-gray-900">Utilisateurs récents</h3>
@@ -118,7 +115,6 @@
             </div>
         </div>
 
-        <!-- Recent Animals -->
         <div class="bg-white rounded-lg shadow-sm">
             <div class="p-6 border-b border-gray-200">
                 <h3 class="text-lg font-semibold text-gray-900">Animaux récents</h3>
@@ -144,7 +140,6 @@
             </div>
         </div>
 
-        <!-- Recent Products -->
         <div class="bg-white rounded-lg shadow-sm">
             <div class="p-6 border-b border-gray-200">
                 <h3 class="text-lg font-semibold text-gray-900">Produits récents</h3>

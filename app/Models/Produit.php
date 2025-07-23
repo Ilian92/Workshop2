@@ -52,16 +52,33 @@ class Produit extends Model
     }
 
     /**
+     * Get the commandes for the produit through produit_commande pivot table.
+     */
+    public function commandes()
+    {
+        return $this->belongsToMany(Commande::class, 'produit_commande', 'produit_id', 'commande_id')
+                    ->withPivot('quantite', 'prixUnitaire')
+                    ->withTimestamps();
+    }
+
+    /**
      * Get the main image URL.
      */
     public function getImageUrlAttribute()
     {
         if ($this->image) {
+            if (str_starts_with($this->image, 'http://') || str_starts_with($this->image, 'https://')) {
+                return $this->image;
+            }
             return asset('storage/' . $this->image);
         }
 
         if ($this->images && is_array($this->images) && !empty($this->images)) {
-            return asset('storage/' . $this->images[0]);
+            $firstImage = $this->images[0];
+            if (str_starts_with($firstImage, 'http://') || str_starts_with($firstImage, 'https://')) {
+                return $firstImage;
+            }
+            return asset('storage/' . $firstImage);
         }
 
         return 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=300&h=300&fit=crop';
@@ -75,12 +92,20 @@ class Produit extends Model
         $urls = [];
 
         if ($this->image) {
-            $urls[] = asset('storage/' . $this->image);
+            if (str_starts_with($this->image, 'http://') || str_starts_with($this->image, 'https://')) {
+                $urls[] = $this->image;
+            } else {
+                $urls[] = asset('storage/' . $this->image);
+            }
         }
 
         if ($this->images && is_array($this->images)) {
             foreach ($this->images as $image) {
-                $urls[] = asset('storage/' . $image);
+                if (str_starts_with($image, 'http://') || str_starts_with($image, 'https://')) {
+                    $urls[] = $image;
+                } else {
+                    $urls[] = asset('storage/' . $image);
+                }
             }
         }
 
