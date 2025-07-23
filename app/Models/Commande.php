@@ -30,4 +30,14 @@ class Commande extends Model
     {
         return $this->hasMany(ProduitCommande::class);
     }
+
+    /**
+     * Get the produits for the commande through produit_commande pivot table.
+     */
+    public function produits()
+    {
+        return $this->belongsToMany(Produit::class, 'produit_commande', 'commande_id', 'produit_id')
+                    ->withPivot('quantite', 'prixUnitaire')
+                    ->withTimestamps();
+    }
 }
