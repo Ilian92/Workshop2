@@ -14,9 +14,17 @@ class Produit extends Model
         'descriptionCourte',
         'descriptionLongue',
         'image',
+        'images',
         'quantite',
         'type_animal_id',
         'pilier_id',
+    ];
+
+    /**
+     * Cast attributes to native types.
+     */
+    protected $casts = [
+        'images' => 'array',
     ];
 
     /**
@@ -41,5 +49,63 @@ class Produit extends Model
     public function produitCommandes()
     {
         return $this->hasMany(ProduitCommande::class);
+    }
+
+    /**
+     * Get the main image URL.
+     */
+    public function getImageUrlAttribute()
+    {
+        if ($this->image) {
+            return asset('storage/' . $this->image);
+        }
+
+        if ($this->images && is_array($this->images) && !empty($this->images)) {
+            return asset('storage/' . $this->images[0]);
+        }
+
+        return 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=300&h=300&fit=crop';
+    }
+
+    /**
+     * Get all images URLs.
+     */
+    public function getImagesUrlsAttribute()
+    {
+        $urls = [];
+
+        if ($this->image) {
+            $urls[] = asset('storage/' . $this->image);
+        }
+
+        if ($this->images && is_array($this->images)) {
+            foreach ($this->images as $image) {
+                $urls[] = asset('storage/' . $image);
+            }
+        }
+
+        return !empty($urls) ? $urls : ['https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=300&h=300&fit=crop'];
+    }
+
+    /**
+     * Add an image to the product.
+     */
+    public function addImage($imagePath)
+    {
+        $images = $this->images ?: [];
+        $images[] = $imagePath;
+        $this->images = $images;
+        $this->save();
+    }
+
+    /**
+     * Remove an image from the product.
+     */
+    public function removeImage($imagePath)
+    {
+        $images = $this->images ?: [];
+        $images = array_filter($images, fn($img) => $img !== $imagePath);
+        $this->images = array_values($images);
+        $this->save();
     }
 }

@@ -33,6 +33,7 @@ class UserFactory extends Factory
             'phone' => fake()->phoneNumber(),
             'birth_date' => fake()->date('Y-m-d', '-18 years'),
             'address' => fake()->address(),
+            'role_id' => 1, // Par défaut, utilisateur standard
             'remember_token' => Str::random(10),
         ];
     }
