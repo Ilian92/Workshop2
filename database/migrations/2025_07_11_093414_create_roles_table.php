@@ -25,6 +25,13 @@ return new class extends Migration
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        DB::table('roles')->insert([
+            'id' => 2,
+            'nom' => 'user',
+            'description' => 'Utilisateur',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**
