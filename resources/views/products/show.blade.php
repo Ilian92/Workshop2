@@ -38,7 +38,7 @@
                             <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ $product->nom }}</h1>
                             
                             <div class="mb-6">
-                                <span class="text-4xl font-bold text-green-600">{{ number_format($product->prix, 2) }} €</span>
+                                <span class="text-4xl font-bold text-green-600">{{ number_format($product->prix/100, 2) }} €</span>
                             </div>
 
                             <div class="mb-6">
