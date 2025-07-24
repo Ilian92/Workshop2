@@ -40,8 +40,8 @@
                                     </div>
                                     
                                     <div class="text-right">
-                                        <p class="font-semibold text-green-600">{{ number_format($item['subtotal'], 2) }} €</p>
-                                        <p class="text-sm text-gray-500">{{ number_format($item['product']->prix, 2) }} € l'unité</p>
+                                        <p class="font-semibold text-green-600">{{ number_format($item['subtotal'] / 100, 2) }} €</p>
+                                        <p class="text-sm text-gray-500">{{ number_format($item['product']->prix / 100, 2) }} € l'unité</p>
                                     </div>
                                 </div>
                             @endforeach
@@ -49,7 +49,7 @@
                             <div class="border-t border-gray-200 pt-4">
                                 <div class="flex justify-between items-center">
                                     <span class="text-lg font-semibold text-gray-900">Total</span>
-                                    <span class="text-2xl font-bold text-green-600">{{ number_format($total, 2) }} €</span>
+                                    <span class="text-2xl font-bold text-green-600">{{ number_format($total / 100, 2) }} €</span>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                                     
                                     <button type="submit" 
                                             class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200">
-                                        Payer {{ number_format($total, 2) }} €
+                                        Payer {{ number_format($total / 100, 2) }} €
                                     </button>
                                 </div>
                             </div>
