@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             TypeAnimalSeeder::class,
             PilierSeeder::class,
+            ProduitSeeder::class,
         ]);
 
         \App\Models\Animal::factory(25)->create();

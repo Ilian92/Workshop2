@@ -36,7 +36,7 @@
                             
                             <div>
                                 <p class="text-sm text-gray-500">Montant total</p>
-                                <p class="font-semibold text-green-600 text-lg">{{ number_format($order->total, 2) }} €</p>
+                                <p class="font-semibold text-green-600 text-lg">{{ number_format($order->total / 100, 2) }} €</p>
                             </div>
                             
                             <div>
