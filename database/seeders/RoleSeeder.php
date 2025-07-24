@@ -12,13 +12,15 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Role::create([
-            'nom' => 'user',
+        \App\Models\Role::firstOrCreate([
+            'nom' => 'user'
+        ], [
             'description' => 'Utilisateur standard avec accès limité'
         ]);
 
-        \App\Models\Role::create([
-            'nom' => 'admin',
+        \App\Models\Role::firstOrCreate([
+            'nom' => 'admin'
+        ], [
             'description' => 'Administrateur avec tous les droits'
         ]);
     }
