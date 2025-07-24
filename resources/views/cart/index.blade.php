@@ -58,10 +58,10 @@
 
                                         <div class="text-right">
                                             <p class="text-lg font-semibold text-green-600">
-                                                {{ number_format($item['subtotal'], 2) }} €
+                                                {{ number_format($item['subtotal'] / 100, 2) }} €
                                             </p>
                                             <p class="text-sm text-gray-500">
-                                                {{ number_format($item['product']->prix, 2) }} € l'unité
+                                                {{ number_format($item['product']->prix / 100, 2) }} € l'unité
                                             </p>
                                         </div>
 
@@ -84,7 +84,7 @@
                                         </form>
                                     </div>
                                     <div class="text-right">
-                                        <p class="text-2xl font-bold text-green-600">Total: {{ number_format($total, 2) }} €</p>
+                                        <p class="text-2xl font-bold text-green-600">Total: {{ number_format($total / 100, 2) }} €</p>
                                     </div>
                                 </div>
                             </div>
